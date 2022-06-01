@@ -1,0 +1,185 @@
+{
+  "type": "carousel",
+  "contents": [
+    {
+      "type": "bubble",
+      "size": "kilo",
+      "header": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "我的錢包",
+            "color": "#ffffff",
+            "align": "start",
+            "size": "md",
+            "gravity": "center"
+          }
+        ],
+        "backgroundColor": "#005757",
+        "paddingTop": "19px",
+        "paddingAll": "12px",
+        "paddingBottom": "16px"
+      },
+      "body": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "token",
+            "contents": [
+              {
+                "type": "span",
+                "text": "新能幣💰："
+              },
+              {
+                "type": "span",
+                "text": "$",
+                "weight": "bold"
+              }
+            ]
+          }
+        ]
+      },
+      "footer": {
+        "type": "box",
+        "layout": "vertical",
+        "spacing": "sm",
+        "contents": [
+          {
+            "type": "button",
+            "style": "primary",
+            "action": {
+              "type": "uri",
+              "label": "轉帳",
+              "uri": "https://liff.line.me/1656942328-O3X1zlpj"
+            },
+            "color": "#00AEAE",
+            "height": "sm"
+          },
+          {
+            "type": "button",
+            "action": {
+              "type": "uri",
+              "label": "兌換商品",
+              "uri": "https://liff.line.me/1656942328-r8npXjJN"
+            },
+            "color": "#00AEAE",
+            "height": "sm",
+            "style": "primary"
+          }
+        ]
+      }
+    },
+    {
+      "type": "bubble",
+      "size": "kilo",
+      "header": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "新能幣獎勵兌換價目表",
+            "color": "#ffffff",
+            "align": "start",
+            "size": "md",
+            "gravity": "center"
+          }
+        ],
+        "backgroundColor": "#005757",
+        "paddingTop": "19px",
+        "paddingAll": "12px",
+        "paddingBottom": "16px"
+      },
+      "body": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "token",
+            "contents": [
+              {
+                "type": "span",
+                "text": "泰山純水",
+                "weight": "bold"
+              },
+              {
+                "type": "span",
+                "text": "  💰130"
+
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": "token",
+            "margin": "xxl",
+            "contents": [
+              {
+                "type": "span",
+                "text": "百威啤酒",
+                "weight": "bold"
+              },
+              {
+                "type": "span",
+                "text": "  💰270"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": "token",
+            "margin": "xxl",
+            "contents": [
+              {
+                "type": "span",
+                "text": "野格SHOT",
+                "weight": "bold"
+              },
+              {
+                "type": "span",
+                "text": "  💰300"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": "token",
+            "margin": "xxl",
+            "contents": [
+              {
+                "type": "span",
+                "text": "新能扇子",
+                "weight": "bold"
+              },
+              {
+                "type": "span",
+                "text": "  💰750"                
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": "token",
+            "margin": "xxl",
+            "contents": [
+              {
+                "type": "span",
+                "text": "LEVI'S 小物",
+                "weight": "bold"
+              },
+              {
+                "type": "span",
+                "text": "  💰750"          
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

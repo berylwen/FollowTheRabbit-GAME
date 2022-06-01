@@ -1,0 +1,267 @@
+{
+  "type": "carousel",
+  "contents": [
+    {
+      "type": "bubble",
+      "size": "kilo",
+      "header": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "任務進度",
+            "color": "#ffffff",
+            "align": "start",
+            "size": "md",
+            "gravity": "center"
+          }
+        ],
+        "backgroundColor": "#750075",
+        "paddingTop": "19px",
+        "paddingAll": "12px",
+        "paddingBottom": "16px"
+      },
+      "body": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "Red",
+            "color": "#CE0000",
+            "align": "start",
+            "size": "md",
+            "gravity": "center",
+            "margin": "xxl",
+            "contents": [
+              {
+                "type": "span",
+                "text": "《保持真我之道》"
+              },
+              {
+                "type": "span",
+                "text": "70%"
+              }
+            ]
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                  {
+                    "type": "filler"
+                  }
+                ],
+                "width": "70%",
+                "backgroundColor": "#CE0000",
+                "height": "8px"
+              }
+            ],
+            "backgroundColor": "#FFD2D2",
+            "height": "8px",
+            "margin": "md",
+            "spacing": "md"
+          },
+          {
+            "type": "text",
+            "text": "Blue",
+            "color": "#005AB5",
+            "align": "start",
+            "size": "md",
+            "gravity": "center",
+            "margin": "xxl",
+            "contents": [
+              {
+                "type": "span",
+                "text": "《元宇宙拓荒牛仔》"
+              },
+              {
+                "type": "span",
+                "text": "100 / 501分"
+              }
+            ]
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                  {
+                    "type": "filler"
+                  }
+                ],
+                "width": "25%",
+                "backgroundColor": "#005AB5",
+                "height": "8px"
+              }
+            ],
+            "backgroundColor": "#D2E9FF",
+            "height": "8px",
+            "margin": "md",
+            "spacing": "md"
+          },
+          {
+            "type": "text",
+            "text": "Green",
+            "color": "#01814A",
+            "align": "start",
+            "size": "md",
+            "gravity": "center",
+            "margin": "xxl",
+            "contents": [
+              {
+                "type": "span",
+                "text": "《狩獵大師之路》"
+              },
+              {
+                "type": "span",
+                "text": "50%"
+              }
+            ]
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                  {
+                    "type": "filler"
+                  }
+                ],
+                "width": "50%",
+                "backgroundColor": "#01814A",
+                "height": "8px"
+              }
+            ],
+            "backgroundColor": "#E8FFF5",
+            "height": "8px",
+            "margin": "md",
+            "spacing": "md"
+          },
+          {
+            "type": "text",
+            "text": "Purple",
+            "color": "#BE77FF",
+            "align": "start",
+            "size": "md",
+            "gravity": "center",
+            "margin": "xxl",
+            "contents": [
+              {
+                "type": "span",
+                "text": "《綻放新能之花》"
+              },
+              {
+                "type": "span",
+                "text": "30%"
+              }
+            ]
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                  {
+                    "type": "filler"
+                  }
+                ],
+                "width": "30%",
+                "backgroundColor": "#BE77FF",
+                "height": "8px"
+              }
+            ],
+            "backgroundColor": "#F1E1FF",
+            "height": "8px",
+            "margin": "md",
+            "spacing": "md"
+          }
+        ],
+        "spacing": "none",
+        "paddingAll": "12px",
+        "margin": "none",
+        "offsetBottom": "sm"
+      },
+      "styles": {
+        "footer": {
+          "separator": false
+        }
+      }
+    },
+    {
+      "type": "bubble",
+      "size": "kilo",
+      "header": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "text",
+            "text": "我的ID",
+            "color": "#ffffff",
+            "align": "start",
+            "size": "md",
+            "gravity": "center"
+          }
+        ],
+        "backgroundColor": "#3C3C3C",
+        "paddingTop": "19px",
+        "paddingAll": "12px",
+        "paddingBottom": "16px"
+      },
+      "body": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "image",
+            "url": "",
+            "size": "5xl",
+            "margin": "none",
+            "offsetTop": "none"
+          }
+        ],
+        "spacing": "none",
+        "paddingAll": "10px",
+        "paddingBottom": "none"
+      },
+      "footer": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "button",
+            "action": {
+              "type": "uri",
+              "label": "前往組隊",
+              "uri": "https://liff.line.me/1656942328-B5drm8nV"
+            },
+            "style": "primary",
+            "margin": "none",
+            "height": "sm",
+            "color": "#005AB5"
+          }
+        ]
+      },
+      "styles": {
+        "footer": {
+          "separator": false
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "type": "bubble",
+  "header": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "image",
+        "url": "",
+        "size": "full"
+      }
+    ]
+  },
+  "body": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "text",
+        "text": "hello, world",
+        "margin": "none",
+        "size": "md",
+        "wrap": true
+      }
+    ]
+  },
+  "styles": {
+    "header": {
+      "backgroundColor": "#4F4F4F"
+    }
+  }
+}

@@ -1,0 +1,78 @@
+{
+  "type": "bubble",
+  "size": "kilo",
+  "header": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "text",
+        "text": "《保持真我之道》獎勵",
+        "color": "#ffffff",
+        "align": "start",
+        "size": "md",
+        "gravity": "center"
+      },
+      {
+        "type": "text",
+        "text": "領取你的百威啤酒",
+        "color": "#ffffff",
+        "align": "start",
+        "size": "sm",
+        "gravity": "center"
+      }
+    ],
+    "backgroundColor": "#CE0000",
+    "paddingTop": "19px",
+    "paddingAll": "12px",
+    "paddingBottom": "16px"
+  },
+  "body": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "image",
+        "url": "https://firebasestorage.googleapis.com/v0/b/synergy-34aeb.appspot.com/o/Rabbit%2FBEER.JPG?alt=media&token=638b6f3f-1789-4536-8818-39bdea91ed48",
+        "size": "4xl",
+        "margin": "none",
+        "offsetTop": "none"
+      },
+      {
+        "type": "text",
+        "text":"*擅自點擊視同放棄兌換資格*",
+        "size":"sm",
+        "color":"#000000",
+        "align":"center",
+        "paddingBottom": "none",
+        "margin":"md"
+      }
+    ],
+    "spacing": "none",
+    "paddingAll": "10px",
+    "paddingBottom": "none"
+  },
+  "footer": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "button",
+        "action": {
+          "type": "message",
+          "label": "兌換(請由工作人員點擊)",
+          "text": "兌換百威"
+        },
+        "style": "primary",
+        "margin": "none",
+        "height": "sm",
+        "color": "#FF7575"
+      }
+    ]
+  },
+  "styles": {
+    "footer": {
+      "separator": false
+    }
+  }
+}

@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Follow the Rabbit 🐇 </title>
+
+  <link rel="stylesheet" rel="preload" as="style" onload="this.rel='stylesheet';this.onload=null" href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
+  <link rel="stylesheet" rel="preload" as="style" onload="this.rel='stylesheet';this.onload=null" href="https://unpkg.com/normalize.css@8.0.0/normalize.css">
+  <link rel="stylesheet" rel="preload" as="style" onload="this.rel='stylesheet';this.onload=null" href="https://unpkg.com/milligram@1.3.0/dist/milligram.min.css">
+  <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+  <script type="text/javascript" src="https://unpkg.com/@zxing/library@latest"></script>
+  
+</head>
+
+<body>
+
+  <main class="wrapper" style="padding-top:2em">
+
+    <section class="container" id="demo-content" align="center">
+      <label>請掃描欲組隊對象的QR-Code</label>
+      <div>
+        <video id="video" width="300" height="300" style="border: 1px solid gray"></video>
+      </div>
+      <div>
+        <a class="button" id="resetButton">重新掃描</a>
+      </div>
+
+    </section>
+  </main>
+  
+  <script type="text/javascript">
+    
+    function decodeOnce(codeReader, selectedDeviceId, leader, liff) {
+        codeReader.decodeFromInputVideoDevice(selectedDeviceId, 'video').then((result) => {
+        console.log(result)
+
+        $.ajax({
+            type: 'POST',
+            url:"/team",
+            data:JSON.stringify({'id':result.text,'leader':leader}),  //轉化字串 
+            contentType: 'application/json; charset=UTF-8',
+            success:function(data){ //成功的話，得到訊息
+                if (data == 'ALREADY'){
+                    var retVal = confirm("對方已有所屬隊伍。");
+                }
+                else if (data == 'ERR'){
+                    var retVal = confirm("QR-Code有誤，請掃描欲組隊之成員ID QR-Code。\n（請被組隊成員點擊LINE選單「遊戲狀態」即可看到ID QR-Code");
+                }
+                else if (data == 'EARLY'){
+                    var retVal = confirm("隊員尚未開啟《元宇宙拓荒牛仔》，請從Line下方選單「開啟遊戲」。");   
+                }
+                else if (data == 'TEAM_FULL'){
+                    var retVal = confirm("您的隊伍已滿三人，請開始尋找標靶、射擊積分。");
+                    liff.openWindow({
+                    // uri：要開啟的網址
+                        url: 'https://line.me/R/ti/p/%40302ajjlz'
+                    });
+                }
+                else if (data == 'FINISH'){
+                    var retVal = confirm("您已完成《元宇宙拓荒之路》，請由Line選單「開啟遊戲」進行其他任務支線。")
+                
+                    liff.openWindow({
+                    // uri：要開啟的網址
+                        url: 'https://line.me/R/ti/p/%40302ajjlz'
+                    });
+                }
+                else if (data == 'OK'){
+                    confirm("已完成組隊，請開始尋找標靶、射擊積分。");
+                    liff.openWindow({
+                    // uri：要開啟的網址
+                        url: 'https://line.me/R/ti/p/%40302ajjlz'
+                    });
+                }
+                else if (data == 'be_ALREADY'){
+                    confirm("對方隊伍已滿3人，請另找其他人進行組隊。");
+                }
+                else if (data == 'be_OK'){
+                    confirm("您已成功加入隊伍，請開始尋找標靶、射擊積分。");
+                    liff.openWindow({
+                    // uri：要開啟的網址
+                        url: 'https://line.me/R/ti/p/%40302ajjlz'
+                    });
+                }
+                else{
+                    var retVal = confirm("已成功加入隊伍，目前隊伍:2人，尚差1人即可開始射擊。");
+                    liff.openWindow({
+                    // uri：要開啟的網址
+                        url: 'https://line.me/R/ti/p/%40302ajjlz'
+                    });
+        
+                }
+            
+            }
+        });
+          
+      }).catch((err) => {
+        console.error(err)
+        
+      })
+    }
+    
+    document.getElementById('resetButton').addEventListener('click', () => {
+        window.location.reload();
+    })
+    
+    window.addEventListener('load', function () {
+      let selectedDeviceId;
+      const codeReader = new ZXing.BrowserQRCodeReader()
+      console.log('code reader initialized')
+      
+      codeReader.getVideoInputDevices()
+        .then((videoInputDevices) => {
+          selectedDeviceId = videoInputDevices[0].deviceId
+          liff.init({
+              liffId: '1656942328-B5drm8nV' // Use own liffId 
+          })
+          .then(() => {
+              // Start to use liff's api
+              liff.getProfile().then(function (profile) {
+                decodeOnce(codeReader, selectedDeviceId, profile.userId, liff);
+              //liff.closeWindow();
+              }).catch((err) => {
+              // Error happens during initialization
+                  console.log(err.code, err.message);
+              });
+          }).catch((err) => {
+              // Error happens during initialization
+              console.log(err.code, err.message);
+          });
+          
+          
+        })
+        .catch((err) => {
+          console.error(err)
+        });
+    });
+    
+    
+    
+    
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,63 @@
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8" />
+    <title>Follow the RABBIT🐇</title>
+    <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // Using a Promise object
+        liff.init({
+            liffId: '1656942328-m0AMBX56' // Use own liffId 
+        })
+        .then(() => {
+            // Start to use liff's api
+            liff.getProfile().then(function (profile) {
+                let string = '';
+                $.ajax({
+                    type: 'POST',
+                    url:"/triangle",
+                    data:JSON.stringify({'id':profile.userId}),  //轉化字串 
+                    contentType: 'application/json; charset=UTF-8',
+                    success:function(data){ //成功的話，得到訊息
+                        if (data == 'YET'){
+                            var retVal = confirm("您尚未加入遊戲，請點擊Line選單「開啟遊戲」。");
+                        }
+                        else if (data == 'EARLY'){
+                            var retVal = confirm("尚未達到任務階段，請點擊Line選單開啟《綻放新能之花》，依序完成任務。");
+                        }
+                        else if (data == 'ALREADY'){
+                            var retVal = confirm("您已取得過「三角波」，請繼續尋找其他波形。");
+                        }
+                        else if (data == 'FINISH'){
+                            var retVal = confirm("您已完成《綻放新能之花》，請由Line選單「開啟遊戲」進行其他任務支線。")
+                        }
+                        else{                            
+                            string = profile.displayName + "成功三角鋸齒波，\n並得到$50新能幣獎勵。";
+                            var retVal = confirm(string);                           
+                        }
+                        liff.openWindow({
+                            // uri：要開啟的網址
+                            url: 'https://line.me/R/ti/p/%40302ajjlz'
+                        });
+                        
+                                
+                    }
+                });
+            }).catch((err) => {
+                // Error happens during initialization
+                console.log(err.code, err.message);
+            });
+        }).catch((err) => {
+            // Error happens during initialization
+            console.log(err.code, err.message);
+        });
+    });
+
+</script>
+</head>
+    <body>
+        <h2 style="text-align:center">三角波取得中⋯⋯<br>請勿關閉此視窗。</h2>
+    </body>
+</html>

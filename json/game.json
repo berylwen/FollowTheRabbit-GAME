@@ -1,0 +1,89 @@
+{
+  "type": "bubble",
+  "header": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "image",
+        "url": "https://firebasestorage.googleapis.com/v0/b/synergy-34aeb.appspot.com/o/Rabbit%2FFollow%20the%20rabbit.png?alt=media&token=1b7894a1-726d-4899-9d9e-08d28e0291bd",
+        "size": "full"
+      }
+    ]
+  },
+  "body": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "text",
+        "text": "Please, Follow the Rabbit",
+        "weight": "bold",
+        "size": "xl"
+      },
+      {
+        "type": "text",
+        "text": "請點擊下方選單開始遊戲任務，任務支線皆可同步進行 無順序。",
+        "margin": "xs",
+        "wrap": true
+      }
+    ]
+  },
+  "footer": {
+    "type": "box",
+    "layout": "vertical",
+    "spacing": "sm",
+    "contents": [
+      {
+        "type": "button",
+        "style": "primary",
+        "height": "sm",
+        "action": {
+          "type": "message",
+          "label": "保持真我之道",
+          "text": "保持真我之道"
+        },
+        "color": "#CE0000"
+      },
+      {
+        "type": "button",
+        "style": "primary",
+        "height": "sm",
+        "action": {
+          "type": "message",
+          "label": "元宇宙拓荒牛仔",
+          "text": "元宇宙拓荒牛仔"
+        },
+        "color": "#005AB5"
+      },
+      {
+        "type": "button",
+        "style": "primary",
+        "height": "sm",
+        "action": {
+          "type": "message",
+          "label": "狩獵大師之路",
+          "text": "狩獵大師之路"
+        },
+        "color": "#01814A"
+      },
+      {
+        "type": "button",
+        "style": "primary",
+        "height": "sm",
+        "action": {
+          "type": "message",
+          "label": "綻放新能之花",
+          "text": "綻放新能之花"
+        },
+        "color": "#BE77FF"
+      }
+    ],
+    "flex": 0
+  },
+  "styles": {
+    "header": {
+      "backgroundColor": "#4F4F4F"
+    }
+  }
+}

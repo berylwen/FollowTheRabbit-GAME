@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Follow the Rabbit 🐇 </title>
+
+  <link rel="stylesheet" rel="preload" as="style" onload="this.rel='stylesheet';this.onload=null" href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
+  <link rel="stylesheet" rel="preload" as="style" onload="this.rel='stylesheet';this.onload=null" href="https://unpkg.com/normalize.css@8.0.0/normalize.css">
+  <link rel="stylesheet" rel="preload" as="style" onload="this.rel='stylesheet';this.onload=null" href="https://unpkg.com/milligram@1.3.0/dist/milligram.min.css">
+  <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+  <script type="text/javascript" src="https://unpkg.com/@zxing/library@latest"></script>
+  
+</head>
+
+<body>
+
+  <main class="wrapper" style="padding-top:2em">
+    <label align='center'>請掃描欲轉帳對象的QR Code</label>
+    <section class="container" id="demo-content" align="center">
+
+      <div>
+        <video id="video" width="300" height="300" style="border: 1px solid gray"></video>
+      </div>
+      
+      <pre><code id="to_id"></code></pre>
+      
+      <label align="start">請輸入轉帳金額: </label>
+      <input type="text" id="amount">
+
+      <div>
+        <a class="button" id="submitButton">OK</a>
+        <a class="button" id="resetButton">重新掃描</a>
+      </div>
+    </section>
+  </main>
+  
+  <script type="text/javascript">
+    
+    function decodeOnce(codeReader, selectedDeviceId, from_id, liff) {
+        codeReader.decodeFromInputVideoDevice(selectedDeviceId, 'video').then((result) => {
+            console.log(result)
+            
+            document.getElementById('to_id').textContent = '已加入轉帳對象'
+            document.getElementById('submitButton').addEventListener('click', () => {
+                const amount = document.getElementById('amount').value;
+                if (amount == ""){
+                    confirm('金額尚未輸入')
+                }
+                $.ajax({
+                    type: 'POST',
+                    url:"/trade",
+                    data:JSON.stringify({'to_id':result.text,'from_id':from_id, 'amount':amount}),  //轉化字串 
+                    contentType: 'application/json; charset=UTF-8',
+                    success:function(data){ //成功的話，得到訊息
+                        if (data == 'ERR'){
+                            var retVal = confirm("QR Code有誤，請掃描欲轉帳之使用者ID QR Code。\n（請被轉帳使用者點擊LINE選單「玩家資料」即可看到ID QR-Code）");
+                        }           
+                        else if (data == 'LESS'){
+                            var retVal = confirm("您的金額不足，無法完成轉帳動作");
+                        }
+                        else{
+                            var retVal = confirm("已成功轉帳。");
+                            liff.openWindow({
+                                // uri：要開啟的網址
+                                url: 'https://line.me/R/ti/p/%40302ajjlz'
+                            });
+                        }
+                        
+                    }
+                });
+                
+          });
+      }).catch((err) => {
+        console.error(err)
+        document.getElementById('to_id').textContent = err
+      });
+    }
+    
+    document.getElementById('resetButton').addEventListener('click', () => {
+        window.location.reload();
+    })
+    
+    window.addEventListener('load', function () {
+      let selectedDeviceId;
+      const codeReader = new ZXing.BrowserQRCodeReader()
+      console.log('code reader initialized')
+      
+      codeReader.getVideoInputDevices()
+        .then((videoInputDevices) => {
+          selectedDeviceId = videoInputDevices[0].deviceId
+          liff.init({
+              liffId: '1656942328-O3X1zlpj' // Use own liffId 
+          })
+          .then(() => {
+              // Start to use liff's api
+              liff.getProfile().then(function (profile) {
+                decodeOnce(codeReader, selectedDeviceId, profile.userId, liff);
+              //liff.closeWindow();
+              }).catch((err) => {
+              // Error happens during initialization
+                  console.log(err.code, err.message);
+              });
+          }).catch((err) => {
+              // Error happens during initialization
+              console.log(err.code, err.message);
+          });
+          
+        })
+        .catch((err) => {
+          console.error(err)
+        });
+      
+    });
+  
+    
+  </script>
+
+</body>
+
+</html>

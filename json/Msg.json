@@ -1,0 +1,37 @@
+{
+  "type": "bubble",
+  "header": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "text",
+        "text": "NAME",
+        "color": "#FFFFFF",
+        "size": "md",
+        "margin": "none"
+      }
+    ],
+    "spacing": "none",
+    "margin": "none",
+    "offsetTop": "none",
+    "paddingAll": "md"
+  },
+  "body": {
+    "type": "box",
+    "layout": "vertical",
+    "contents": [
+      {
+        "type": "text",
+        "text": "Msg",
+        "wrap": true,
+        "size": "md"
+      }
+    ]
+  },
+  "styles": {
+    "header": {
+      "backgroundColor": "#BE77FF"
+    }
+  }
+}

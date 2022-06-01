@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Follow the Rabbit 🐇 </title>
+
+  <link rel="stylesheet" rel="preload" as="style" onload="this.rel='stylesheet';this.onload=null" href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
+  <link rel="stylesheet" rel="preload" as="style" onload="this.rel='stylesheet';this.onload=null" href="https://unpkg.com/normalize.css@8.0.0/normalize.css">
+  <link rel="stylesheet" rel="preload" as="style" onload="this.rel='stylesheet';this.onload=null" href="https://unpkg.com/milligram@1.3.0/dist/milligram.min.css">
+  <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+  <script type="text/javascript" src="https://unpkg.com/@zxing/library@latest"></script>
+  
+</head>
+
+<body>
+
+  <main class="wrapper" style="padding-top:2em">
+
+    <section class="container" id="demo-content" align="center">
+      <label>請掃描欲兌換的商品QR Code</label>
+      <div>
+        <video id="video" width="300" height="300" style="border: 1px solid gray"></video>
+      </div>
+      <label align="start">兌換商品： </label>
+      <font size="2" align="start">若成功掃描、此處已有商品名，則不需輸入下方輸入欄</font>
+      <pre><code id="product"></code></pre>
+                                       
+      <label align="start">*若無法掃描QR Code, <br>請依照版子上的文字輸入: </label>
+      <input type="text" id="type">
+      <div>
+        <a class="button" id="submitButton">OK</a>
+        <a class="button" id="resetButton">重新掃描</a>
+      </div>
+    </section>
+  </main>
+  
+  <script type="text/javascript">
+    var product = ''
+    var amount = 0
+    function decodeOnce(codeReader, selectedDeviceId) {
+        codeReader.decodeFromInputVideoDevice(selectedDeviceId, 'video').then((result) => {
+            console.log(result)
+            if (result.text == 'SHOT'){
+                product = '野格SHOT'    
+                amount = 300
+            }
+            else if (result.text == 'WATER'){
+                product = '泰山純水'
+                amount = 130
+            }
+            else if (result.text == 'BEER'){
+                product = '百威啤酒'
+                amount = 270
+            }
+            else if (result.text == 'SYNERGYFAN'){
+                product = '新能祭扇子'
+                amount = 750
+            }
+            else if (result.text == 'LEVIS'){
+                product = "LEVI'S小物"
+                amount = 750
+            }
+            
+            else{
+                var retVal = confirm("QR Code有誤，請掃描兌換站擺放之欲兌換商品QR-Code。");
+            }
+            document.getElementById('product').textContent = product
+            
+      
+      }).catch((err) => {
+        console.error(err)
+        document.getElementById('to_id').textContent = err
+      });
+    }
+        
+    window.addEventListener('load', function () {
+      let selectedDeviceId;
+      const codeReader = new ZXing.BrowserQRCodeReader()
+      console.log('code reader initialized')
+      
+      codeReader.getVideoInputDevices()
+        .then((videoInputDevices) => {
+          selectedDeviceId = videoInputDevices[0].deviceId
+          decodeOnce(codeReader, selectedDeviceId);
+          
+        })
+        .catch((err) => {
+          console.error(err)
+        });
+      
+    });
+
+    document.getElementById('resetButton').addEventListener('click', () => {
+        window.location.reload();
+    })
+    
+    document.getElementById('submitButton').addEventListener('click', () => {
+        const type = document.getElementById('type').value;
+        if (type == 'SHOT'){
+            product = '野格SHOT'; 
+            amount = 300;
+        }
+        else if (type == 'WATER'){
+            product = '泰山純水';
+            amount = 130;
+        }
+        else if (type == 'BEER'){
+            product = '百威啤酒';
+            amount = 270;
+        }
+        else if (type == 'SYNERGYFAN'){
+            product = '新能祭扇子';
+            amount = 750;
+        }
+        else if (type == 'LEVIS'){
+            product = "LEVI'S小物";
+            amount = 750;
+        }
+        
+        else{
+            if (type != ''){
+                var retVal = confirm("輸入錯誤，請依照版子上輸入商品名稱。");
+            }
+        }
+        if (product != ''){
+            liff.init({
+                  liffId: '1656942328-r8npXjJN' // Use own liffId 
+              })
+              .then(() => {
+                  // Start to use liff's api
+                  liff.getProfile().then(function (profile) {
+                    
+                      $.ajax({
+                          type: 'POST',
+                          url:"/buy",
+                          data:JSON.stringify({'id':profile.userId, 'amount':amount, 'product':product}),  //轉化字串 
+                          contentType: 'application/json; charset=UTF-8',
+                          success:function(data){ //成功的話，得到訊息       
+                              if (data == 'LESS'){
+                                  var retVal = confirm("您的金額不足，無法兌換");
+                              }
+                              else{
+                                  var retVal = confirm("已成功兌換。");
+                                  
+                              }
+                              liff.openWindow({
+                                  // uri：要開啟的網址
+                                  url: 'https://line.me/R/ti/p/%40302ajjlz'
+                              });
+                          }
+                      });
+    
+                  //liff.closeWindow();
+                  }).catch((err) => {
+                  // Error happens during initialization
+                      console.log(err.code, err.message);
+                  });
+              }).catch((err) => {
+                  // Error happens during initialization
+                  console.log(err.code, err.message);
+              });
+            
+        }
+          
+  });
+
+
+    
+    
+    
+    
+  </script>
+
+</body>
+
+</html>
