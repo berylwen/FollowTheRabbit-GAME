@@ -5,7 +5,7 @@ Using Replit as server.
 
 Using FIREBASE as database.
 
-Using HTML and Flase to implement camera scan QR-Codes.
+Using HTML and Flask to implement camera scan QR-Codes.
 
 # Game description
 Users play the real-virtual game to gain prize and token that can be used in SYNERGY FESTIVAL.
@@ -33,7 +33,7 @@ Before you leave, send the video with you and your last drink.
 ## Purple Line:
 Follow the instructions that the RABBIT give. 
 
-Collect four items in the plase with scanning QR-Codes.
+Collect four items in the place with scanning QR-Codes.
 
 # Files description
 Main.py: The main executing file which contains the most of functions.
